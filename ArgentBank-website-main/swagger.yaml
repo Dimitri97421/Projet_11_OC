@@ -176,6 +176,36 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+    post:
+      tags:
+        - Transaction Module
+      summary: Add transaction details
+      description: Add specific details to a transaction
+      security:
+        - Bearer: []
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          type: string
+          description: ID of the transaction to add details to
+        - in: body
+          name: body
+          description: Transaction details to add
+          required: true
+          schema:
+            $ref: '#/definitions/TransactionDetails'
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Transaction details added successfully
+          schema:
+            $ref: '#/definitions/ApiResponse'
+        '400':
+          description: Invalid Fields
+        '500':
+          description: Internal Server Error
     delete:
       tags:
         - Transaction Module
@@ -299,8 +329,6 @@ definitions:
           transaction:
             type: object
             properties:
-              date:
-                type: string
               transactionType:
                 type: string
               category:
@@ -315,5 +343,12 @@ definitions:
   TransactionDelete:
     type: object
     properties:
+      description:
+        type: string
+  TransactionDetails:
+    type: object
+    properties:
+      newInformation:
+        type: string
       description:
         type: string

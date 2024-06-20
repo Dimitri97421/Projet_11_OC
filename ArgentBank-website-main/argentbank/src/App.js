@@ -24,6 +24,7 @@ function App() {
               <Route path="/" exact Component={Accueil} />
               <Route path="/sign-in" Component={SignIn} />
               <Route path="/user" Component={User} />
+              <Route path="*" Component={() => <Navigate to="/" />} />
             </Routes>
             <Footer/>
           </div>
